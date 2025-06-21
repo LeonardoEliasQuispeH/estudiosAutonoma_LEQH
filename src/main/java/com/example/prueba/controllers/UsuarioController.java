@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.prueba.Dto.LoginRequest;
+
 import com.example.prueba.entities.Usuario;
 import com.example.prueba.repositories.UsuarioRepository;
 
@@ -56,9 +56,9 @@ public class UsuarioController {
     //-----------------------------------------------------------------------------
 
     @GetMapping("/buscar/{id}")
-    public ResponseEntity<?> getProductoById(@PathVariable Long id) {
+    public ResponseEntity<?> getUsuarioById(@PathVariable Long id) {
         return usuarioRepository.findById(id)
-            .<ResponseEntity<?>>map(producto -> ResponseEntity.ok(producto))
+            .<ResponseEntity<?>>map(usuario -> ResponseEntity.ok(usuario))
             .orElseGet(() -> {
                 Map<String, String> response = new HashMap<>();
                 response.put("mensaje", "Usuario no encontrado con ID: " + id);
@@ -111,22 +111,7 @@ public class UsuarioController {
 
     //-----------------------------------------------------------------------------
 
-    // LOGIN
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
-        Optional<Usuario> usuarioOptional = usuarioRepository.findByUsuarioClave(
-            loginRequest.getUsuario(), loginRequest.getContraseña()
-        );
-
-        if (usuarioOptional.isPresent()) {
-            Usuario usuario = usuarioOptional.get();
-            return ResponseEntity.ok(usuario);
-        } else {
-            Map<String, String> response = new HashMap<>();
-            response.put("mensaje", "Usuario o contraseña incorrectos");
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
-        }
-    }
+    
 
 
 }
