@@ -32,6 +32,11 @@ public class HolaController {
         return "Hola mundo";
     }
 
+    @GetMapping("/debug")
+    public String debug() {
+        return "Backend actualizado con /login";
+    }
+
     // LOGIN
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
