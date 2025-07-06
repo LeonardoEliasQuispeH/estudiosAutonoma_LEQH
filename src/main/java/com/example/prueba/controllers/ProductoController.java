@@ -107,7 +107,7 @@ public class ProductoController {
             return ResponseEntity.ok(response); // 200 OK con mensaje
         } else {
             response.put("mensaje", "Producto no encontrado");
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response); // 404 con mensaje
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response); // 404 whit menssaje
         }
     }
 
