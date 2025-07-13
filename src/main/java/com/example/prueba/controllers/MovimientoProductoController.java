@@ -2,6 +2,7 @@ package com.example.prueba.controllers;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.prueba.Dto.MovimientoNombreProductoDTO;
 import com.example.prueba.entities.MovimientoProducto;
 import com.example.prueba.repositories.MovimientoProductoRepository;
 
@@ -33,6 +34,12 @@ public class MovimientoProductoController {
     @GetMapping("/listar")
     public List<MovimientoProducto> listarMovimientos() {
         return movimientoProductoRepository.findAll();
+    }
+
+    @GetMapping("/listar-con-producto")
+    public ResponseEntity<List<MovimientoNombreProductoDTO>> listarMovimientosConProducto() {
+        List<MovimientoNombreProductoDTO> lista = movimientoProductoRepository.listarMovimientosNombreProducto();
+        return ResponseEntity.ok(lista);
     }
 
     // POST: Crear un nuevo movimiento
